@@ -158,8 +158,8 @@ function levelUp() {
     boxesArray = Array.from(boxes);
     boxes.forEach(box => {
         if (window.innerWidth < 600) {
-            box.style.height = 100 / (gameLevel + 1) + 'vw';
-            box.style.width = 100 / (gameLevel + 1) + 'vw';
+            box.style.height = 100 / (gameLevel + 3) + 'vw';
+            box.style.width = 100 / (gameLevel + 3) + 'vw';
         }
         else {
             box.style.height = 20 / (gameLevel + 1) + "vw";
