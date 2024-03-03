@@ -81,21 +81,37 @@ button {
 }
 
 @media(max-width:600px) {
+    .gameEssentials {
+        padding: 1rem;
+    }
+
     #gameName {
-        font-size: 3rem;
+        font-size: 2rem;
     }
 
     #mycontent {
-        font-size: 1.5rem;
+        background-color: #FFEA2D;
+        font-size: 1.125rem;
+        padding: 10px;
+        border-radius: 10px;
 
     }
 
+    .gameGuide {
+        padding: 1rem;
+    }
+
+    /* 
     input[type="text"] {
         width: 40vw;
-    }
+    } */
 
     button {
         font-size: 1.4rem;
         padding: 0px 10px;
+    }
+
+    input[type="text"] {
+        width: 80vw;
     }
 }
