@@ -1,0 +1,478 @@
+// Generative Utils: https://github.com/georgedoescode/generative-utils, MIT licensed
+import { random } from '/scripts/generative-utils.min.js';
+import fileSaver from 'https://cdn.skypack.dev/pin/file-saver@v2.0.5-UsWqrW8RsYF08S1pEHIw/mode=imports,min/optimized/file-saver.js';
+
+const width = 325;
+const height = 100;
+
+document.querySelector('#ssspill').remove();
+
+const svg = SVG()
+  .viewbox(0, 0, width, height)
+  .addTo('#ssspill-wrapper')
+  .attr('id', 'ssspill');
+// .attr("preserveAspectRatio", "xMidYMid slice");
+
+// positive peaks
+let lowerBound = 55;
+let upperBound = 98;
+let [r1, r2, r3, r4, r5, r6, r7, r8, r9, r10, r11, r12, r13, r14] = [
+  ...new Array(14),
+].map(() => random(lowerBound, upperBound));
+
+// negative peaks
+let lowerBound2 = 2;
+let upperBound2 = 28;
+let [
+  rr1,
+  rr2,
+  rr3,
+  rr4,
+  rr5,
+  rr6,
+  rr7,
+  rr8,
+  rr9,
+  rr10,
+  rr11,
+  rr12,
+  rr13,
+  rr14,
+] = [...new Array(14)].map(() => random(lowerBound2, upperBound2));
+
+function generate(
+  bgColor = 'hsl(292, 100%, 22%)',
+  frequency = 13,
+  fillType = 'gradient',
+  fills = ['hsl(37, 99%, 67%)', 'hsl(316, 73%, 52%)'],
+  fill = 'hsl(292, 63%, 78%)',
+  reRand = false
+) {
+  svg.clear();
+
+  if (+frequency <= 9) {
+    upperBound2 = 20;
+    lowerBound = 60;
+  }
+  if (+frequency <= 7) {
+    upperBound2 = 18;
+    lowerBound = 65;
+  }
+
+  if (reRand) {
+    [r1, r2, r3, r4, r5, r6, r7, r8, r9, r10, r11, r12, r13, r14] = [
+      ...new Array(14),
+    ].map(() => random(lowerBound, upperBound));
+
+    [
+      rr1,
+      rr2,
+      rr3,
+      rr4,
+      rr5,
+      rr6,
+      rr7,
+      rr8,
+      rr9,
+      rr10,
+      rr11,
+      rr12,
+      rr13,
+      rr14,
+    ] = [...new Array(14)].map(() => random(lowerBound2, upperBound2));
+  }
+
+  let positivePeaks;
+  let negativePeaks;
+  switch (+frequency) {
+    case 7:
+      positivePeaks = `<rect x="0" width="14.2857%" height="${r1}" rx="25" />
+      <rect x="${14.2857142857 * 2}%" width="14.2857%" height="${r2}" rx="25" />
+      <rect x="${14.2857142857 * 4}%" width="14.2857%" height="${r3}" rx="25" />
+      <rect x="${
+        14.2857142857 * 6
+      }%" width="14.2857%" height="${r4}" rx="25" />`;
+      negativePeaks = `<rect x="14.2857%" y="${rr1}" width="14.2857%" height="60" rx="25" />
+      <rect x="${
+        14.2857142857 * 3
+      }%" y="${rr2}" width="14.2857%" height="60" rx="25" />
+      <rect x="${
+        14.2857142857 * 5
+      }%" y="${rr3}" width="14.2857%" height="60" rx="25" />`;
+      break;
+    case 9:
+      positivePeaks = `<rect x="0" width="11.1111%" height="${r1}" rx="20" />
+      <rect x="${11.1111111111 * 2}%" width="11.1111%" height="${r2}" rx="20" />
+      <rect x="${11.1111111111 * 4}%" width="11.1111%" height="${r3}" rx="20" />
+      <rect x="${11.1111111111 * 6}%" width="11.1111%" height="${r4}" rx="20" />
+      <rect x="${
+        11.1111111111 * 8
+      }%" width="11.1111%" height="${r5}" rx="20" />`;
+      negativePeaks = `<rect x="11.1111%" y="${rr1}" width="11.1111%" height="60" rx="20" />
+      <rect x="${
+        11.1111111111 * 3
+      }%" y="${rr2}" width="11.1111%" height="60" rx="20" />
+      <rect x="${
+        11.1111111111 * 5
+      }%" y="${rr3}" width="11.1111%" height="60" rx="20" />
+      <rect x="${
+        11.1111111111 * 7
+      }%" y="${rr4}" width="11.1111%" height="60" rx="20" />`;
+      break;
+    case 11:
+      positivePeaks = `<rect x="0" width="9.0909%" height="${r1}" rx="15" />
+      <rect x="${9.0909090909 * 2}%" width="9.0909%" height="${r2}" rx="15" />
+      <rect x="${9.0909090909 * 4}%" width="9.0909%" height="${r3}" rx="15" />
+      <rect x="${9.0909090909 * 6}%" width="9.0909%" height="${r4}" rx="15" />
+      <rect x="${9.0909090909 * 8}%" width="9.0909%" height="${r5}" rx="15" />
+      <rect x="${
+        9.0909090909 * 10
+      }%" width="9.0909%" height="${r6}" rx="15" />`;
+      negativePeaks = `<rect x="9.0909%" y="${rr1}" width="9.0909%" height="60" rx="15" />
+      <rect x="${
+        9.0909090909 * 3
+      }%" y="${rr2}" width="9.0909%" height="60" rx="15" />
+      <rect x="${
+        9.0909090909 * 5
+      }%" y="${rr3}" width="9.0909%" height="60" rx="15" />
+      <rect x="${
+        9.0909090909 * 7
+      }%" y="${rr4}" width="9.0909%" height="60" rx="15" />
+      <rect x="${
+        9.0909090909 * 9
+      }%" y="${rr5}" width="9.0909%" height="60" rx="15" />`;
+      break;
+    case 13:
+      positivePeaks = `<rect x="0" width="7.69%" height="${r1}" rx="15" />
+      <rect x="50" width="7.69%" height="${r2}" rx="15" />
+      <rect x="100" width="7.69%" height="${r3}" rx="15" />
+      <rect x="150" width="7.69%" height="${r4}" rx="15" />
+      <rect x="200" width="7.69%" height="${r5}" rx="15" />
+      <rect x="250" width="7.69%" height="${r6}" rx="15" />
+      <rect x="300" width="7.69%" height="${r7}" rx="15" />`;
+      negativePeaks = `<rect x="25" y="${rr1}" width="7.69%" height="60" rx="15" />
+      <rect x="75" y="${rr2}" width="7.69%" height="60" rx="15" />
+      <rect x="125" y="${rr3}" width="7.69%" height="60" rx="15" />
+      <rect x="175" y="${rr4}" width="7.69%" height="60" rx="15" />
+      <rect x="225" y="${rr5}" width="7.69%" height="60" rx="15" />
+      <rect x="275" y="${rr6}" width="7.69%" height="60" rx="15" />`;
+      break;
+    case 15:
+      positivePeaks = `<rect x="0" width="6.66%" height="${r1}" rx="12" />
+      <rect x="13.33%" width="6.66%" height="${r2}" rx="12" />
+      <rect x="26.67%" width="6.66%" height="${r3}" rx="12" />
+      <rect x="40%" width="6.66%" height="${r4}" rx="12" />
+      <rect x="53.33%" width="6.66%" height="${r5}" rx="12" />
+      <rect x="66.67%" width="6.66%" height="${r6}" rx="12" />
+      <rect x="80%" width="6.66%" height="${r7}" rx="12" />
+      <rect x="93.33%" width="6.66%" height="${r8}" rx="12" />`;
+      negativePeaks = `<rect x="6.66%" y="${rr1}" width="6.66%" height="60" rx="12" />
+      <rect x="20%" y="${rr2}" width="6.66%" height="60" rx="12" />
+      <rect x="33.33%" y="${rr3}" width="6.66%" height="60" rx="12" />
+      <rect x="46.67%" y="${rr4}" width="6.66%" height="60" rx="12" />
+      <rect x="60%" y="${rr5}" width="6.66%" height="60" rx="12" />
+      <rect x="73.33%" y="${rr6}" width="6.66%" height="60" rx="12" />
+      <rect x="86.67%" y="${rr7}" width="6.66%" height="60" rx="12" />`;
+      break;
+    case 17:
+      positivePeaks = `<rect x="0" width="5.88%" height="${r1}" rx="12" />
+      <rect x="11.76%" width="5.88%" height="${r2}" rx="12" />
+      <rect x="23.53%" width="5.88%" height="${r3}" rx="12" />
+      <rect x="35.29%" width="5.88%" height="${r4}" rx="12" />
+      <rect x="47.06%" width="5.88%" height="${r5}" rx="12" />
+      <rect x="58.82%" width="5.88%" height="${r6}" rx="12" />
+      <rect x="70.59%" width="5.88%" height="${r7}" rx="12" />
+      <rect x="82.35%" width="5.88%" height="${r8}" rx="12" />
+      <rect x="94.12%" width="5.88%" height="${r9}" rx="12" />`;
+      negativePeaks = `<rect x="5.88%" y="${rr1}" width="5.88%" height="60" rx="12" />
+      <rect x="17.65%" y="${rr2}" width="5.88%" height="60" rx="12" />
+      <rect x="29.41%" y="${rr3}" width="5.88%" height="60" rx="12" />
+      <rect x="41.18%" y="${rr4}" width="5.88%" height="60" rx="12" />
+      <rect x="52.94%" y="${rr5}" width="5.88%" height="60" rx="12" />
+      <rect x="64.71%" y="${rr6}" width="5.88%" height="60" rx="12" />
+      <rect x="76.47%" y="${rr7}" width="5.88%" height="60" rx="12" />
+      <rect x="88.24%" y="${rr8}" width="5.88%" height="60" rx="12" />`;
+      break;
+    case 19:
+      positivePeaks = `<rect x="0" width="5.26%" height="${r1}" rx="12" />
+      <rect x="${5.2631578947 * 2}%" width="5.26%" height="${r2}" rx="12" />
+      <rect x="${5.2631578947 * 4}%" width="5.26%" height="${r3}" rx="12" />
+      <rect x="${5.2631578947 * 6}%" width="5.26%" height="${r4}" rx="12" />
+      <rect x="${5.2631578947 * 8}%" width="5.26%" height="${r5}" rx="12" />
+      <rect x="${5.2631578947 * 10}%" width="5.26%" height="${r6}" rx="12" />
+      <rect x="${5.2631578947 * 12}%" width="5.26%" height="${r7}" rx="12" />
+      <rect x="${5.2631578947 * 14}%" width="5.26%" height="${r8}" rx="12" />
+      <rect x="${5.2631578947 * 16}%" width="5.26%" height="${r9}" rx="12" />
+      <rect x="${5.2631578947 * 18}%" width="5.26%" height="${r10}" rx="12" />`;
+      negativePeaks = `<rect x="5.26%" y="${rr1}" width="5.26%" height="60" rx="12" />
+      <rect x="${
+        5.2631578947 * 3
+      }%" y="${rr2}" width="5.26%" height="60" rx="12" />
+      <rect x="${
+        5.2631578947 * 5
+      }%" y="${rr3}" width="5.26%" height="60" rx="12" />
+      <rect x="${
+        5.2631578947 * 7
+      }%" y="${rr4}" width="5.26%" height="60" rx="12" />
+      <rect x="${
+        5.2631578947 * 9
+      }%" y="${rr5}" width="5.26%" height="60" rx="12" />
+      <rect x="${
+        5.2631578947 * 11
+      }%" y="${rr6}" width="5.26%" height="60" rx="12" />
+      <rect x="${
+        5.2631578947 * 13
+      }%" y="${rr7}" width="5.26%" height="60" rx="12" />
+      <rect x="${
+        5.2631578947 * 15
+      }%" y="${rr8}" width="5.26%" height="60" rx="12" />
+      <rect x="${
+        5.2631578947 * 17
+      }%" y="${rr9}" width="5.26%" height="60" rx="12" />`;
+      break;
+    case 21:
+      positivePeaks = `<rect x="0" width="4.76%" height="${r1}" rx="12" />
+      <rect x="${4.7619047619 * 2}%" width="4.76%" height="${r2}" rx="12" />
+      <rect x="${4.7619047619 * 4}%" width="4.76%" height="${r3}" rx="12" />
+      <rect x="${4.7619047619 * 6}%" width="4.76%" height="${r4}" rx="12" />
+      <rect x="${4.7619047619 * 8}%" width="4.76%" height="${r5}" rx="12" />
+      <rect x="${4.7619047619 * 10}%" width="4.76%" height="${r6}" rx="12" />
+      <rect x="${4.7619047619 * 12}%" width="4.76%" height="${r7}" rx="12" />
+      <rect x="${4.7619047619 * 14}%" width="4.76%" height="${r8}" rx="12" />
+      <rect x="${4.7619047619 * 16}%" width="4.76%" height="${r9}" rx="12" />
+      <rect x="${4.7619047619 * 18}%" width="4.76%" height="${r10}" rx="12" />
+      <rect x="${4.7619047619 * 20}%" width="4.76%" height="${r11}" rx="12" />`;
+      negativePeaks = `<rect x="4.76%" y="${rr1}" width="4.76%" height="60" rx="12" />
+      <rect x="${
+        4.7619047619 * 3
+      }%" y="${rr2}" width="4.76%" height="60" rx="12" />
+      <rect x="${
+        4.7619047619 * 5
+      }%" y="${rr3}" width="4.76%" height="60" rx="12" />
+      <rect x="${
+        4.7619047619 * 7
+      }%" y="${rr4}" width="4.76%" height="60" rx="12" />
+      <rect x="${
+        4.7619047619 * 9
+      }%" y="${rr5}" width="4.76%" height="60" rx="12" />
+      <rect x="${
+        4.7619047619 * 11
+      }%" y="${rr6}" width="4.76%" height="60" rx="12" />
+      <rect x="${
+        4.7619047619 * 13
+      }%" y="${rr7}" width="4.76%" height="60" rx="12" />
+      <rect x="${
+        4.7619047619 * 15
+      }%" y="${rr8}" width="4.76%" height="60" rx="12" />
+      <rect x="${
+        4.7619047619 * 17
+      }%" y="${rr9}" width="4.76%" height="60" rx="12" />
+      <rect x="${
+        4.7619047619 * 19
+      }%" y="${rr10}" width="4.76%" height="60" rx="12" />`;
+      break;
+    case 23:
+      positivePeaks = `<rect x="0" width="4.3478%" height="${r1}" rx="12" />
+      <rect x="${4.347826087 * 2}%" width="4.3478%" height="${r2}" rx="12" />
+      <rect x="${4.347826087 * 4}%" width="4.3478%" height="${r3}" rx="12" />
+      <rect x="${4.347826087 * 6}%" width="4.3478%" height="${r4}" rx="12" />
+      <rect x="${4.347826087 * 8}%" width="4.3478%" height="${r5}" rx="12" />
+      <rect x="${4.347826087 * 10}%" width="4.3478%" height="${r6}" rx="12" />
+      <rect x="${4.347826087 * 12}%" width="4.3478%" height="${r7}" rx="12" />
+      <rect x="${4.347826087 * 14}%" width="4.3478%" height="${r8}" rx="12" />
+      <rect x="${4.347826087 * 16}%" width="4.3478%" height="${r9}" rx="12" />
+      <rect x="${4.347826087 * 18}%" width="4.3478%" height="${r10}" rx="12" />
+      <rect x="${4.347826087 * 20}%" width="4.3478%" height="${r11}" rx="12" />
+      <rect x="${
+        4.347826087 * 22
+      }%" width="4.3478%" height="${r12}" rx="12" />`;
+      negativePeaks = `<rect x="4.3478%" y="${rr1}" width="4.3478%" height="60" rx="12" />
+      <rect x="${
+        4.347826087 * 3
+      }%" y="${rr2}" width="4.3478%" height="60" rx="12" />
+      <rect x="${
+        4.347826087 * 5
+      }%" y="${rr3}" width="4.3478%" height="60" rx="12" />
+      <rect x="${
+        4.347826087 * 7
+      }%" y="${rr4}" width="4.3478%" height="60" rx="12" />
+      <rect x="${
+        4.347826087 * 9
+      }%" y="${rr5}" width="4.3478%" height="60" rx="12" />
+      <rect x="${
+        4.347826087 * 11
+      }%" y="${rr6}" width="4.3478%" height="60" rx="12" />
+      <rect x="${
+        4.347826087 * 13
+      }%" y="${rr7}" width="4.3478%" height="60" rx="12" />
+      <rect x="${
+        4.347826087 * 15
+      }%" y="${rr8}" width="4.3478%" height="60" rx="12" />
+      <rect x="${
+        4.347826087 * 17
+      }%" y="${rr9}" width="4.3478%" height="60" rx="12" />
+      <rect x="${
+        4.347826087 * 19
+      }%" y="${rr10}" width="4.3478%" height="60" rx="12" />
+      <rect x="${
+        4.347826087 * 21
+      }%" y="${rr11}" width="4.3478%" height="60" rx="12" />`;
+      break;
+    case 25:
+      positivePeaks = `<rect x="0" width="4%" height="${r1}" rx="9" />
+      <rect x="${4 * 2}%" width="4%" height="${r2}" rx="9" />
+      <rect x="${4 * 4}%" width="4%" height="${r3}" rx="9" />
+      <rect x="${4 * 6}%" width="4%" height="${r4}" rx="9" />
+      <rect x="${4 * 8}%" width="4%" height="${r5}" rx="9" />
+      <rect x="${4 * 10}%" width="4%" height="${r6}" rx="9" />
+      <rect x="${4 * 12}%" width="4%" height="${r7}" rx="9" />
+      <rect x="${4 * 14}%" width="4%" height="${r8}" rx="9" />
+      <rect x="${4 * 16}%" width="4%" height="${r9}" rx="9" />
+      <rect x="${4 * 18}%" width="4%" height="${r10}" rx="9" />
+      <rect x="${4 * 20}%" width="4%" height="${r11}" rx="9" />
+      <rect x="${4 * 22}%" width="4%" height="${r12}" rx="9" />
+      <rect x="${4 * 24}%" width="4%" height="${r13}" rx="9" />`;
+      negativePeaks = `<rect x="4%" y="${rr1}" width="4%" height="60" rx="9" />
+      <rect x="${4 * 3}%" y="${rr2}" width="4%" height="60" rx="9" />
+      <rect x="${4 * 5}%" y="${rr3}" width="4%" height="60" rx="9" />
+      <rect x="${4 * 7}%" y="${rr4}" width="4%" height="60" rx="9" />
+      <rect x="${4 * 9}%" y="${rr5}" width="4%" height="60" rx="9" />
+      <rect x="${4 * 11}%" y="${rr6}" width="4%" height="60" rx="9" />
+      <rect x="${4 * 13}%" y="${rr7}" width="4%" height="60" rx="9" />
+      <rect x="${4 * 15}%" y="${rr8}" width="4%" height="60" rx="9" />
+      <rect x="${4 * 17}%" y="${rr9}" width="4%" height="60" rx="9" />
+      <rect x="${4 * 19}%" y="${rr10}" width="4%" height="60" rx="9" />
+      <rect x="${4 * 21}%" y="${rr11}" width="4%" height="60" rx="9" />
+      <rect x="${4 * 23}%" y="${rr12}" width="4%" height="60" rx="9" />`;
+      break;
+    case 27:
+      positivePeaks = `<rect x="0" width="3.7037%" height="${r1}" rx="7" />
+      <rect x="${3.7037037037 * 2}%" width="3.7037%" height="${r2}" rx="7" />
+      <rect x="${3.7037037037 * 4}%" width="3.7037%" height="${r3}" rx="7" />
+      <rect x="${3.7037037037 * 6}%" width="3.7037%" height="${r4}" rx="7" />
+      <rect x="${3.7037037037 * 8}%" width="3.7037%" height="${r5}" rx="7" />
+      <rect x="${3.7037037037 * 10}%" width="3.7037%" height="${r6}" rx="7" />
+      <rect x="${3.7037037037 * 12}%" width="3.7037%" height="${r7}" rx="7" />
+      <rect x="${3.7037037037 * 14}%" width="3.7037%" height="${r8}" rx="7" />
+      <rect x="${3.7037037037 * 16}%" width="3.7037%" height="${r9}" rx="7" />
+      <rect x="${3.7037037037 * 18}%" width="3.7037%" height="${r10}" rx="7" />
+      <rect x="${3.7037037037 * 20}%" width="3.7037%" height="${r11}" rx="7" />
+      <rect x="${3.7037037037 * 22}%" width="3.7037%" height="${r12}" rx="7" />
+      <rect x="${3.7037037037 * 24}%" width="3.7037%" height="${r13}" rx="7" />
+      <rect x="${
+        3.7037037037 * 26
+      }%" width="3.7037%" height="${r14}" rx="7" />`;
+      negativePeaks = `<rect x="3.7037%" y="${rr1}" width="3.7037%" height="60" rx="7" />
+      <rect x="${
+        3.7037037037 * 3
+      }%" y="${rr2}" width="3.7037%" height="60" rx="7" />
+      <rect x="${
+        3.7037037037 * 5
+      }%" y="${rr3}" width="3.7037%" height="60" rx="7" />
+      <rect x="${
+        3.7037037037 * 7
+      }%" y="${rr4}" width="3.7037%" height="60" rx="7" />
+      <rect x="${
+        3.7037037037 * 9
+      }%" y="${rr5}" width="3.7037%" height="60" rx="7" />
+      <rect x="${
+        3.7037037037 * 11
+      }%" y="${rr6}" width="3.7037%" height="60" rx="7" />
+      <rect x="${
+        3.7037037037 * 13
+      }%" y="${rr7}" width="3.7037%" height="60" rx="7" />
+      <rect x="${
+        3.7037037037 * 15
+      }%" y="${rr8}" width="3.7037%" height="60" rx="7" />
+      <rect x="${
+        3.7037037037 * 17
+      }%" y="${rr9}" width="3.7037%" height="60" rx="7" />
+      <rect x="${
+        3.7037037037 * 19
+      }%" y="${rr10}" width="3.7037%" height="60" rx="7" />
+      <rect x="${
+        3.7037037037 * 21
+      }%" y="${rr11}" width="3.7037%" height="60" rx="7" />
+      <rect x="${
+        3.7037037037 * 23
+      }%" y="${rr12}" width="3.7037%" height="60" rx="7" />
+      <rect x="${
+        3.7037037037 * 25
+      }%" y="${rr13}" width="3.7037%" height="60" rx="7" />`;
+      break;
+  }
+
+  if (fillType === 'gradient') {
+    svg
+      .defs()
+      .add(
+        `<linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="ssspill-grad"><stop stop-color="${fills[0]}" stop-opacity="1" offset="45%"></stop><stop stop-color="${fills[1]}" stop-opacity="1" offset="100%"></stop></linearGradient>`
+      );
+  }
+
+  svg.svg(`<rect width="100%" height="100%" fill="${bgColor}" />
+
+  <g fill="${fillType === 'gradient' ? 'url(#ssspill-grad)' : fill}">
+    <rect width="100%" height="40" fill="${
+      fillType === 'gradient' ? fills[0] : fill
+    }" />
+
+    ${positivePeaks}
+  </g>
+
+  <g fill="${bgColor}">
+    ${negativePeaks}
+  </g>`);
+}
+window.generate = generate;
+
+generate();
+
+const svgEl = document.querySelector('#ssspill');
+
+function copy(el) {
+  svgEl.removeAttribute('id');
+  const svgMarkup = svg.svg();
+  svg.attr('id', 'ssspill');
+  copyTextToClipboard(svgMarkup, el);
+}
+window.copy = copy;
+
+function download(el) {
+  svgEl.removeAttribute('id');
+  const svgMarkup = svg.svg();
+  svg.attr('id', 'ssspill');
+  const svgBlob = new Blob([svgMarkup], {
+    type: 'text/plain;charset=utf-8',
+  });
+  fileSaver.saveAs(svgBlob, 'ssspill.svg');
+}
+window.download = download;
+
+// copy text
+
+// Inspired from answer: https://stackoverflow.com/a/30810322 by Dean Taylor: https://stackoverflow.com/users/406712/dean-taylor
+function copyTextToClipboard(text, el) {
+  navigator.clipboard.writeText(text).then(
+    function () {
+      const originalText = el.innerHTML;
+      el.classList.add('bounce');
+
+      // Feather icons: https://feathericons.com/, MIT licensed
+      el.innerHTML = `<svg class="inline" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg> <span class="hidden sm:inline">copied!</span>`;
+
+      setTimeout(() => {
+        el.classList.remove('bounce');
+        el.innerHTML = originalText;
+      }, 1500);
+    },
+    function (err) {
+      console.error('Async: Could not copy text: ', err);
+    }
+  );
+}
+
+function setOpacity(value) {
+  svg.opacity(value);
+}
+window.setOpacity = setOpacity;

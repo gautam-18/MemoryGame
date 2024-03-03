@@ -1,0 +1,146 @@
+@import url('https://fonts.googleapis.com/css2?family=Madimi+One&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Madimi One", sans-serif
+}
+
+
+body {
+    background-image: url(images/2204_w030_n002_359b_p1_359.jpg);
+    background-size: cover;
+
+}
+
+@media(max-width:600px) {
+    body {
+        animation: bganim 40s alternate-reverse infinite;
+        background-position-x: 0%;
+    }
+}
+
+@keyframes bganim {
+    from {
+        background-position-x: 0%;
+    }
+
+    to {
+        background-position-x: 100%;
+    }
+}
+
+.myGame {
+    height: 100vh;
+    width: 100vw;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    padding: 5rem;
+}
+
+
+
+.game-box {
+
+    display: flex;
+    flex-direction: column;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+}
+
+.col {
+    margin: 2px;
+    height: 6rem;
+    width: 6rem;
+    background-color: #470012;
+    border-radius: 10px;
+}
+
+.player {
+    width: 30vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+/* .result {
+    color: white;
+} */
+.row1 {
+    display: flex;
+    justify-content: space-around;
+    color: white;
+    border: 1px solid #000;
+    /* Add a border to each row */
+    margin-bottom: 5px;
+    /* Add some margin between rows */
+    padding: 5px;
+    /* Add padding to each row */
+}
+
+button {
+    font-size: 1.5rem;
+    color: #FFF035;
+    transition: all 0.5s;
+    border: none;
+    background-color: #69131E;
+    border-radius: 1rem;
+    padding: 0px 25px;
+
+}
+
+button:hover {
+    background-color: #470012;
+    cursor: pointer;
+}
+
+.game_Score {
+    height: 100vh;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.score {
+    padding: 0.2rem;
+    height: 7vh;
+    width: 30vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.displayContents {
+    padding: 1rem;
+    height: 10vh;
+    width: 30vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#gameStatus {
+    color: #FFF035;
+    font-size: 2rem;
+
+
+}
+
+.start {
+    padding: 0.2rem;
+    height: 7vh;
+    width: 30vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}

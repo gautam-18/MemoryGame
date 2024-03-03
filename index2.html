@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MemoryGame</title>
+
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <div class="myGame">
+        <div class="game_Score">
+            <div class="score">
+                <h3 id="gameStatus">Level : <span id="myLevel">1</span></h3>
+                <h3 id="gameStatus">Current Score : <span id="myCurrentScore">0</span> </h3>
+            </div>
+            <div class="game-box">
+                <div class="row">
+                    <div class="col"></div>
+                    <div class="col"></div>
+                    <div class="col"></div>
+                </div>
+                <div class="row">
+                    <div class="col"></div>
+                    <div class="col"></div>
+                    <div class="col"></div>
+                </div>
+                <div class="row">
+                    <div class="col"></div>
+                    <div class="col"></div>
+                    <div class="col"></div>
+                </div>
+            </div>
+            <div class="start">
+                <button id="PlayGame">PlayGame</button>
+                <button id="restart">RestartGame</button>
+            </div>
+
+        </div>
+        <div class="displayContents">
+
+            <div id="winMessage" style="color: #470012; font-size: 2rem; font-weight: bolder; display: none;">You won
+                the game!</div>
+            <div id="loseMessage" style="color: #470012; font-size: 2rem; font-weight: bolder;display: none;">You lose
+                the game!</div>
+        </div>
+
+
+    </div>
+    <audio src="pop-1-35897.mp3" hidden id="pop-sound"></audio>
+    <audio src="game-bonus-144751.mp3" id="game-win"></audio>
+    <audio src="game-music-loop-3-144252.mp3" hidden id="game-sound" autoplay></audio>
+    <audio src="descending-tones-168472.mp3" hidden id="game-loose"></audio>
+
+    <script src="script2.js"></script>
+</body>
+
+</html>
